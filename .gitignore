@@ -1,2 +1,4 @@
 .env
 notebook/data
+notebook/mlruns
+notebook/mlruns.db
