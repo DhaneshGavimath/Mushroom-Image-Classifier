@@ -1,4 +1,4 @@
-# Mashroop-Image-Classifier
+# Mushroom-Image-Classifier
 Training CNN to identify Varieties of mushrooms which helps identify the edible and non-edible ones.
 
 ## Dataset Credits:
