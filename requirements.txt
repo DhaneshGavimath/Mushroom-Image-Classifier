@@ -3,3 +3,5 @@ numpy
 tensorflow
 streamlit
 mlflow
+matplotlib
+pydot

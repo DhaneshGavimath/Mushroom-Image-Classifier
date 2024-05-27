@@ -21,6 +21,34 @@ def load_model(model_path):
     finally:
         return model
 
+def get_model_architecture():
+    """
+    provides get the architecture image of the model
+    returns: image file path(png)
+    """
+    model_path = "./notebook/mushroom_classifier.keras"
+    image_file_path = "./notebook/mushroom_classifier.png"
+    response = {"status": "success", "response": "response"}
+    try:
+        logger.info("Fetching model Architecture Image")
+        model = model = load_model(model_path)
+        if model is None:
+            raise Exception("Failed to load the model")
+        tf.keras.utils.plot_model(model, to_file=image_file_path,
+                               show_shapes=False,show_dtype=False,
+                               show_layer_names=False,rankdir="TB",
+                               expand_nested=False,dpi=200,
+                               show_layer_activations=False,
+                               show_trainable=False)
+        response["status"] = "success"
+        response["response"] = {"path": image_file_path}
+    except Exception as exp:
+        logger.exception("Loading Architecture Failed. Error:{}".format(str(exp)))
+        response["status"] = "failed"
+        response["response"] = str(exp)
+    finally:
+        return response
+
 def image_to_tensor(image):
     """
     Converts PIL image to numpy array
@@ -75,7 +103,9 @@ def predict_image(image_uploaded):
         prediction_class_type = prediction.split("-")[1]
         prediction_results = {"class": prediction_class, 
                             "confidence":confidence_score, 
-                            "class_type": prediction_class_type}
+                            "class_type": prediction_class_type,
+                            "softmax": prediction_softmax[0],
+                            "classes": classes}
         
         response["status"] = "success"
         response["response"] = prediction_results
