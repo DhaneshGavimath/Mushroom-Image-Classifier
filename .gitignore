@@ -2,3 +2,5 @@
 notebook/data
 notebook/mlruns
 notebook/mlruns.db
+logs
+__pycache__
