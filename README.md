@@ -21,7 +21,8 @@ cd Mushroom-Image-Classifier
 <br>
 >Create python environment and activate it
 ```
-python -m venv .env\n.env\Scripts\activate
+python -m venv .env
+.env\Scripts\activate
 ```
 
 >Install the requirements
