@@ -2,8 +2,10 @@
 Training and deploying CNN to identify varieties of mushrooms which helps identify the edible and non-edible ones. Knowing the type of mushrooms is life saviour.
 
 ## Try the app - [Mushroom Image Classifier](https://mushroom-image-classifier.streamlit.app/)
-![Mushrooms]("/notebook/mushrooms.png")
-<br>
+<p>
+    <img src="notebook/mushrooms.png" style="width:100%; height:auto;" />
+</p>
+
 Image credit: [phienix_han](https://unsplash.com/@phienix_han)
 
 ## Local Setup
