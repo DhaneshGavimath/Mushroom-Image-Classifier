@@ -16,7 +16,7 @@ st.divider()
 # ============ Sidebar ==============
 st.sidebar.header("Image Classifier")
 st.sidebar.divider()
-screen = st.sidebar.radio("Navigate to :point_down:",options = ["Model Inference", "Local setup"])
+screen = st.sidebar.radio("Navigate to :point_down:",options = ["Model Inference", "Local Setup"])
 
 # ========== Main Window ============
 if screen == "Model Inference":
@@ -67,14 +67,23 @@ if screen == "Model Inference":
                     st.error(prediction_response.get("response"))
     st.divider()
 else:
-    st.write("Local Setup")
-    st.caption("In Progress")
+    st.subheader("Local Setup")
+
+    st.write("**Clone Repository**")
+    st.caption("Clone the git repo using the following command to your local directory")
+    st.code("git clone https://github.com/DhaneshGavimath/Mushroom-Image-Classifier.git\ncd Mushroom-Image-Classifier",
+            line_numbers=True)
+
+    st.write("**Environment Setup**")
+    st.caption("Create python environment and activate it")
+    st.code("python -m venv .env\n.env\Scripts\\activate", line_numbers=True)
+    st.caption("Install the requirements")
+    st.code("pip install -r requirements.txt", line_numbers=True)
+
+    st.write("**Start the app**")
+    st.caption("Start the streamlit application with the following command. Provide the port number of your choice")
+    st.code("streamlit run streamlit.py --server.port 9999", line_numbers=True)
     st.divider()
-    # response = get_model_architecture()
-    # if response.get("status") == "success":
-    #     image_path = response.get("response")["path"]
-    #     architecture_image = Image.open(image_path)
-    #     st.image(architecture_image, caption='CNN Model architecture', use_column_width=True)
 
 
     
