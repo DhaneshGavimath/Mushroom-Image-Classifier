@@ -10,16 +10,16 @@ from matplotlib import pyplot as plt
 # ============ Page Config ==========
 st.set_page_config(page_title="Mushroom", page_icon="M", layout="wide", initial_sidebar_state="auto")
 st.title("Mushroom-Image-Classification")
-st.write("Know before you consume it")
+st.caption("Mushroom Insight: Identify Before You Eat")
 st.divider()
 
 # ============ Sidebar ==============
 st.sidebar.header("Image Classifier")
 st.sidebar.divider()
-screen = st.sidebar.radio("Navigate to :point_down:",options = ["Model Inference", "Local Setup"])
+screen = st.sidebar.radio("Navigate to :point_down:",options = ["Mushroom Insight", "Local Setup"])
 
 # ========== Main Window ============
-if screen == "Model Inference":
+if screen == "Mushroom Insight":
     upload_status = False
     upload_column, result_column = st.columns([0.4, 0.6], gap="large")
     with upload_column:
@@ -59,8 +59,8 @@ if screen == "Model Inference":
                     st.divider()
                     chart_df = pd.DataFrame({"classes": classes, "Probability": softmax_proba})
                     axis = chart_df.plot.barh(label=classes)
-                    x_positions = np.arange(len(classes))
-                    plt.yticks(x_positions, classes)
+                    y_positions = np.arange(len(classes))
+                    plt.yticks(y_positions, classes)
                     st.pyplot(axis.figure)
 
                 else:
