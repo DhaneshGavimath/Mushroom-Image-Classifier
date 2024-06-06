@@ -42,38 +42,37 @@ if screen == "Mushroom Insight":
         if upload_status:
             with st.spinner("Prediction in progress !"):
                 # predictions = predict_image()
-                prediction_tab, image_tab = st.tabs(["Prediction Results", "Key Features"])
                 prediction_response = predict_image(image_uploaded, image_name)
-                
-                with prediction_tab:
-                    if prediction_response.get("status") == "success":
-                        prediction_results = prediction_response.get("response")
-                        
-                        mush_class = prediction_results["class"]
-                        confidence = prediction_results["confidence"]
-                        mush_type = prediction_results["class_type"]
-                        softmax_proba = prediction_results["softmax"]
-                        classes = prediction_results["classes"]
+                if prediction_response.get("status") == "success":
+                    prediction_results = prediction_response.get("response")
+                    
+                    mush_class = prediction_results["class"]
+                    confidence = prediction_results["confidence"]
+                    mush_type = prediction_results["class_type"]
+                    softmax_proba = prediction_results["softmax"]
+                    classes = prediction_results["classes"]
 
-                        st.toast("Image Prediction completed")
-                        st.write(f"Class: **{mush_class}**")
-                        st.write(f"Mushroom-Type: **{mush_type}**")
-                        st.write(f"Confidence: **{confidence:.2f}**")
-                    else:
-                        st.error(prediction_response.get("response"))
-                with image_tab:
-                    image_path = "./Images/" + image_name
-                    image_superimposed = Image.open(image_path)
-                    image_superimposed = image_superimposed.resize((256,256))  
-                    st.image(image_superimposed, caption='Key Features', use_column_width=False)
-                # chart
-                # st.divider()
-                with st.expander("Chart"):
+                    st.toast("Image Prediction completed")
+                    st.write(f"Class: **{mush_class}**")
+                    st.write(f"Mushroom-Type: **{mush_type}**")
+                    st.write(f"Confidence: **{confidence:.2f}**")
+                else:
+                    st.error(prediction_response.get("response"))
+                    st.stop()
+                # Displaying Image and Chart
+                chart_tab, image_tab = st.tabs(["Probability Distribution Chart", "Key Features"])
+                with chart_tab:
                     chart_df = pd.DataFrame({"classes": classes, "Probability": softmax_proba})
                     axis = chart_df.plot.barh(label=classes)
                     y_positions = np.arange(len(classes))
                     plt.yticks(y_positions, classes)
                     st.pyplot(axis.figure)
+                with image_tab:
+                    image_path = "./Images/" + image_name
+                    image_superimposed = Image.open(image_path)
+                    image_superimposed = image_superimposed.resize((384,384))  
+                    st.image(image_superimposed, caption='Key Features', use_column_width=False)
+
     st.divider()
 else:
     st.subheader("Local Setup")
