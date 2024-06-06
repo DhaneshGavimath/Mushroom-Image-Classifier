@@ -4,3 +4,4 @@ notebook/mlruns
 notebook/mlruns.db
 logs
 Images
+__pycache__
