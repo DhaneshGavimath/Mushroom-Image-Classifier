@@ -149,7 +149,7 @@ def predict_image(image_uploaded, image_name):
             os.mkdir(image_folder)
         save_path = os.path.join(image_folder, image_name)
         # Superimposing the images
-        transparancy = 0.3
+        transparancy = 0.4
         image_uploaded_array = np.array(image_uploaded)
         super_imposed_array = image_uploaded_array + transparancy * feature_map_colored
         super_imposed_image = tf.keras.utils.array_to_img(super_imposed_array)
