@@ -118,12 +118,12 @@ def predict_image(image_uploaded, image_name):
         input_image = preprocess_image(image_uploaded)
 
         # load grad_model
-        conv_layer_name = "feature_maps_4D"
+        conv_layer_name = "normalized_feature_maps"
         grad_model = load_grad_model(model,conv_layer_name)
 
         # gradient tape to compute effect of convolution output feature maps on classification
         with tf.GradientTape() as tape:
-            conv_output, prediction = grad_model(input_image)
+            conv_output, prediction = grad_model(input_image, training = False)
             prediction_softmax = tf.nn.softmax(prediction, axis=None)
             confidence_score = tf.math.reduce_max(prediction_softmax, axis=-1, keepdims=True)
         gradient = tape.gradient(confidence_score, conv_output)
