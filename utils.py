@@ -161,6 +161,10 @@ def predict_image(image_uploaded, image_name):
         prediction = classes[class_index]
         prediction_class = prediction.split("-")[0]
         prediction_class_type = prediction.split("-")[1]
+        threshold = 0.75
+        if confidence_score < threshold:
+            prediction_class = "Unable to Identify (Not Enough Confidence)"
+            prediction_class_type = "NA"
         prediction_results = {"class": prediction_class, 
                             "confidence":confidence_score, 
                             "class_type": prediction_class_type,
