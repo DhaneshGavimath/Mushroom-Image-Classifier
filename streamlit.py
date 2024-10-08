@@ -24,7 +24,7 @@ if screen == "Mushroom Insight":
     upload_column, result_column = st.columns([0.4, 0.6], gap="large")
     with upload_column:
         st.subheader("File Upload")
-        image_file = st.file_uploader("Uplaod Image of Mushroom to identify it", 
+        image_file = st.file_uploader("Upload Image of Mushroom to identify it", 
                                         type=['png', 'jpg'],
                                         label_visibility="collapsed",)
         if image_file is not None:
