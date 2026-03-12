@@ -158,7 +158,7 @@ def predict_image(image_uploaded, image_name):
         # Prediction Results
         confidence_score = tf.math.reduce_max(prediction_softmax[0], axis=-1, keepdims=False).numpy()
         class_index = tf.math.argmax(prediction_softmax[0], axis=-1, output_type=tf.dtypes.int64).numpy()
-        prediction = classes[class_index]
+        prediction = classes[int(class_index)]
         prediction_class = prediction.split("-")[0]
         prediction_class_type = prediction.split("-")[1]
         threshold = 0.75
