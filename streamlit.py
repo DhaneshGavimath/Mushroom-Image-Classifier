@@ -62,7 +62,7 @@ if screen == "Mushroom Insight":
                 # Displaying Image and Chart
                 chart_tab, image_tab = st.tabs(["Probability Distribution Chart", "Key Features"])
                 with chart_tab:
-                    chart_df = pd.DataFrame({"classes": classes, "Probability": softmax_proba})
+                    chart_df = pd.DataFrame({"classes": classes, "Probability": np.squeeze(softmax_proba)})
                     axis = chart_df.plot.barh(label=classes)
                     y_positions = np.arange(len(classes))
                     plt.yticks(y_positions, classes)
